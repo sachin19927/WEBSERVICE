@@ -16,7 +16,7 @@ public class TestClient {
 
 		CaslServiceSoapBindingStub  stub=new CaslServiceSoapBindingStub(endPointURL, service);
 
-		int result=stub.add(10, 10);
+		int result=stub.add(10, 10);add
 System.err.println("REsut is "+result ); 
 
 int result1=stub.sub(10, 10);
