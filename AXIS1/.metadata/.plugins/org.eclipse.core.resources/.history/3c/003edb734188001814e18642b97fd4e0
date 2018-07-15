@@ -1,0 +1,19 @@
+package com.webserviceclass;
+
+import java.net.URISyntaxException;
+
+public class TestClient {
+
+	
+	public static void main(String[] args) throws URISyntaxException {
+		
+		
+		java.net.URL endPointURL=new java.net.URL("http://localhost:8081/CalCalutionService/services/CaslService");
+		org.apache.axis.client.Service service=new org.apache.axis.client.Service();
+
+		CaslServiceSoapBindingStub  stub=new CaslServiceSoapBindingStub(endPointURL, service);
+
+
+	}
+	
+}

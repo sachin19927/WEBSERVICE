@@ -1,0 +1,13 @@
+package com.webserviceclass;
+
+public class TestClient {
+
+	
+	public static void main(String[] args) {
+		
+		
+		java.net.URI endPointURL=new java.net.URI("http://localhost:8081/CalCalutionService/services/CaslService");
+		
+	}
+	
+}
