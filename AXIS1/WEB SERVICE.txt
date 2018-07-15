@@ -1,0 +1,383 @@
+WEB SRECIVE INTRODUCTION
+
+
+Pre-requirements
+
+
+CORE JAVA
+JAVA web application
+Deploy Java web application
+
+
+
+SOAP(JAX RPC and JAX WS jar) 
+REST(JAX RS jar)
+
+
+example of SBI and ICIC ATM communicate
+
+
+
+Web service Architecture 1
+
+WS is specification its not not an API it provide some set rules and communications  how to communicate
+
+Ws communicate between 2 improper able applications
+
+it has 6 components
+
+1 WSDL ws description language
+2 UDDI (optional)
+3 SKELETON
+4 STUB
+5 SOAP protocol
+6 HTTP protocol
+
+
+take one Java based application with a CalSericev.java having method 
+public int add(int i ,int j )
+{
+return i+j;
+}
+ this methods has to be called from C++ or c# application
+
+ 
+ since client is is an c+++ application calling Java so can directly create object or call method so one WSDL file will be created in JAVA application
+ WSDL is noting but a XML file its an universal language can read from any application
+ it contains class name, method name , parameter type and return type and also end point URL`(location of the service running)
+WS a/c is having UDDI i.e UDDI registration software  the service provider will store the WSDL file which will be having unique name
+unique name will be share to client and also send the location of UDDI file 
+WSDL file will be received by client by using Unique name client send unique name to UDDI
+client will get WSDL file using WSDL(xml) file client will generate some process called  STUBS or proxies using some stub generation tool
+STUB will create a class client is c+ application stub will create C++ class if C3 then C# class
+what ever method present in java server side method same will be available in STUB class
+method will be same but implemention will be diff but finally method will be same
+After generating STUB client will create a an object of STUB . invoke method and  pass parameter and add result type
+now method calling is gone to STUB class .  Now STUB having method calling details and store it in XML formate  this is called SOAP request 
+in SOAP request we have name of class, method,  parameter value and types
+STUB is strong this XML (SOAP) because this XML document need to send to the service because it may be of any language so requested method should be understood to ur service applaiction
+ 
+
+Web service Architecture 2
+
+
+Why we call it has SOAP
+because STUB uses some predefined tags to prepare this XML document that are called as SOAP tags.
+SOAP is protocol which contains set of predefined tags STUB use tags to prepare the document
+SOAP request need to be sent to service loactin
+HTTP protocol move  SOAP requet from clint locatiion to   service side locaion 
+SOAP request contain name of method parament values types
+Server will revive the request 
+Server will handle over this request to component called SKELETON
+SKELETON is predefined class
+if sevice calss is java skeleton is java class if it is C# calss then skelton is  C$ class
+SKELTON class depends on Service Class 
+SKEETON will take SOAP request skeleoton will read XML file to get name the method name, paramert vales n types  
+SKELTON will invoke the clent requeted method on the acual service class by passing the values to the method 
+SKELTON will get Return value as some integer value that need to be sent to cleint loacion
+Againg SKELTON will prepare a XML document that will be SOAP response where it will store service and retrun value
+SKELTON wil also use some predefined tags to prepare SOAP response and it will be service side loaction need to moved to client loaction again using HTTP protocl
+HTTP is tranport protocol it moves from one location to another
+SOAP response available to client loaction
+STUb wil read the SOAP response value that value will be return to cleint    
+
+
+
+WSDL is a XML which contains service class details  which is provided by service provider  to prepare WSDL we need WSDL generation tool
+for WSDL generation tool to create WSDL file  input will be one is service class , we need to pass end point url.
+
+WSDL will be used by client to kknow about your service details
+
+UDDI will get WSDL file with unique name and its loaction 
+UDDI is not mandtory if clinet alrdy know the WSDL file which he may got through the mail
+
+
+Purpose of SOAP is SOAP is a protcoal conatins set of tags used by STUB to create a SOAP request  same tags used by SKLETOn to preapre SOAP responce
+SOAP is messageing Prortol
+HHTP is trportaion protocl
+SKELTON is a predefined class
+
+WHO will provide WSDL gernertion tool SKELTON prdefined class
+if it is java SUN micro system will provide WSDL tool and SKELTON class
+
+
+We need some API should be provided by platform
+
+
+Who will provide STUB generation tool cleint is java then SUn microsystem will provide
+
+
+JAVA WEB SERVICE API'S
+
+
+JAX-RPC java  API for REmote prcedue call
+JAX-M java API for XML messaging 
+JAX-WS java API fro Ws
+JAX-RS
+
+all priveded buy SUN micro system
+
+ two types of WEB services  
+1 SYNCHRONOUS web serives (JAX-RPC,WS,RS)
+2 ASYNCHORNOUS web serivice (JAX-M) 
+
+
+example one WS is there client amde a request to the WS if WS take some time to provide  responce back to the client that is Called ASYNCHRONOUS WS
+if client get immidate resoponse that will be the SYNCHONOUS WS
+Cleint will never wait if it is ASYNCHRONUS WS
+
+
+SYNCHONOUS WS again two types 
+
+A) SOAP based WS(JAX-RPC,WS)
+B) REST based WS (JAX-RS)
+
+
+all this API are interface there is no implementation	
+
+this API came with JDK version no need to download
+
+
+Implementation for JAX-RPC
+
+it is a specifiaction given by SUn microsystem along with JDK 1.4
+we can develop both SOAP based WS and Client side WS
+
+implementaion 
+
+1 JAX-RPC-SI (sunmoicro Implementation) proviced API it is not along JDK we need to download this API
+2 AXIS1 givien by APcahe foundation 3rd party need to download jar
+3 WEB LOGIC Implementation BEE(ORACLE) with WEB logic SERver
+4 WEB sphere implementaion by IBM 
+5 JBOSS implementaion by REDHAT
+
+all should provide WSDL generatte tool and SKELETON 
+
+
+Implementation for JAX-WS
+
+1 JAX-WS-RI (Referenece Implementation menase not fully implementaion by sun micro system now it is along with JDK 1.6)
+2 METRO (sun micro system it is fully implemented) download separaly
+3 AXIS2 apache foundation it doesnt support spring integration
+4 APACHE CXF  it  support spring integration
+5 WEB logic
+6 WEb sphere
+7 JBOSS
+8 GLASS fish
+	
+Implementation for JAX-RS
+ 
+1 JERSY sun micro system download
+2 RESTEASY redHAT
+3 RESRLET
+4 APCHE CXF support SPring 
+5 APACHE WINK dont support spring
+
+
+
+JAX_M
+
+
+we can develop asynchornous WS no body will develop asnychornuse stil we asnychrnous rhen go JMS (JAVA messaging Services)
+
+
+
+SImple WEB SEVRCVICE AXIS1 calling using Eclpise
+
+JAX-RPC applaiction
+
+WS means a POJO calss means no interface extends or implements
+CalService.java
+public int add(int i,inj )
+{
+return i+j;
+}
+
+public int sub(int i,inj )
+{
+return i-j;
+}
+
+
+convert JAVA class as WS calss
+
+this class should with in Web appliaction and deployed in Server
+and inside web appliaction we need to configure SKELETON 
+when request made it comes to SERVEr server idnetifies the SKELETON
+SKELEOTON should be SERVLET and need to config servlet in WEB.xml file with some URL pattern
+
+
+
+Generate WSDL file using WSDL tool and config SKELTOn all this step if u dont use IDE tool
+
+client make a request when ever he amkes a request SOAP request along with SOAP request  he will send some other details thar nor not includeed in SOAP request
+in SOAP request we only got method deatils like method name paramneter values and types exate will be the URL
+ex http://localhost:8080/applaction-name/service/calServicementod
+
+skeltonurl pattern will be congigured in WEB.xml file
+ex /service/*
+
+tis will be the pattern and u have to send the Unique name the service
+it will be addition with SOAP request
+
+this URL will be availbe in WSDL file aslo use clint will get the URL usig WSD file that will the end point URL of WS
+
+
+provide unique name to SERVICE
+
+to provide unique name to CAlservice.java   we need to creat one XMl file server-config.WSDL file inside this we will map ur service class with the Unique NAme
+
+when request is made server will recive and SKLETON will look the URL and take the unique name in  to the congfig file so it verify if any service class mapped with unique name if it is mapped it will take taht class creat object and invoke method give resonse
+
+
+Some compnet are common1 WSDL geenrtion tool, SKELETON, server-config.WSDl all provided by WS providers
+configutionfile is mandantory but file name will be differtnt for implmentaion to another implemnetation
+
+Configuration file used by the SKELTON to  identify the the SERvice class 
+   
+   
+org.apache.axis.wsdl.java2WSDL  this class is given by AXIS1 implementation it is acting as WSDL genertion tool which genertae WSDL file
+input will be service class and end point URL anme WSDL file target anem space of WSDL file then only WSDL will be created
+
+org.apche.axis.transport.http.AxisServlet this class acting as AxisServlet need to configuerd in WEB.xml
+
+
+Eclipse in built having AXIS 1 AXIS2 and APACHE CXF WS implmentation pluging wihche are all SOAP based  no REST based pluging in EClipse
+
+ex if u want METRO ws u nedd to mannulay do all this steps
+
+Got o eclpis and Start the steps for Axis 1
+
+create an Dynmic Web Project
+
+create A clss in The Project now We want create clss into WS 
+follow steps
+write clcik on the JAva file new-> other-> WEB service->web services
+
+  there are 2 approaches Bottom Up approach and top up approach
+  
+  in bottom up approach we will create service class then convert into web service 
+  in top down 2st we will devolve WSDL file and from there generate required user defined and service type class
+  
+  in configuration you can check you can change the server type and also WS type default inbuilt we have axis1 ,axis2 ,apache CFX
+  
+  finish  it now WSDL file will be created and also server-config.WSDl file will be created and SKELEOTON configuration will be done in WEB.xml with url pattern
+  
+  
+  http://localhost:8081/CalCalutionService/services/CaslService    end ponit url
+  
+  http://localhost:8081/CalCalutionService/services/CaslService?wsdl   WSDL url
+  
+  
+  
+  AXIS 1 web Service Client using Eclipse
+  
+  2  types WS clients
+  
+  1 Proxy based  client 
+  2 DII client (Dynamic Invocation Interface)
+
+if WS client  generating STUB at client side and if the STUBS  client use to invoke WEBS is called  proxy based WS
+in DII client never generate STUBS so that client will never use generated STUBS to invoke the WS 
+
+in DII the WS provider will provide some set class which act as a STUB class that will use as in our application for WS
+
+
+
+Client require WSDL file or WSDL URL from service provider  to create the WS client
+
+
+WSDL file contains above the class name of the class method parameter type and return type and end point url
+
+based on URL client generate STUB if is proxy based  client
+
+client will develop a standalone alone web based application where  client will use generated stubs to invoke WS
+  
+ 1 create a stand alone application 
+ create java application 
+we need to copy WSDL file  into project folder or WSDL url
+generate Stubs
+main method program there use stub to invoke the method
+TestCLient.java 
+
+
+
+create java project copy WSDL file
+now generate  STUBS follow some rules 
+generated STUB are java files so need to created in src folder only 
+right click SRC-.NEW->OTHERR->web SERCVICE-> web service client -> browse WSDL file are URL of WSDL 
+
+in WSDL file we have TargetNAmespace this Axis stub generation tool use this tagetnamespace to generate stub package at the client sides reverse order of tagetnamespace package will be crated in src of client application 
+
+  
+WSDL file having one binding tag that name will be the class name of STUB class in CLeint side
+
+to create the Object of STUB class we need to have Constructor but already it is having constructor with URL and service as a parameter
+before creating STUb object i need to create object java.net.URL object and Service object then by passing the 2 arguments we will get STUB object
+
+Service is class given by Axis implementation 
+
+
+
+AXIS 2 WS using Eclipse
+
+AXIS 2 JAX-WS specification given by apache
+
+eclipse has AXIS 1 AXIS 2 , APACHE CXF plug in but it has only jar fro AXIS 1
+do we need to download AXIS 2 and apache CXF jars
+
+
+steps 
+download and Extract AXIS 2 jars
+add jars to eclipse
+create dynamic project
+create a class with package and make Ws of that class to create WSDL file 
+create WSDL  file using AXIS 2 implementation
+Test WSDL URL
+
+
+
+to add in eclipse go to preferences -> web services AXIS 2preferences 
+browse location root directory of extracted folder
+
+AXIS2 belongs JAX-WS so it has given some Annotations like @WebSERvice , @webMethod @webparam
+
+so it is mandatory to add annotations if we are using AXIS2 but since we are using EClipse no need of it because Eclipse will add it for us
+convert class to WS using AXIS2 implementation
+
+
+in browser 
+
+type
+http://localhost:8081/CalServes/then 
+click SERVICE you ca see all the SErvice your using in method
+
+
+
+
+
+AXIS 2 WS Client USING eclipse
+
+same AS AXIS 1 Client side WS
+ 
+ create STUB in SRC using AXIS2 but this time class will be created but no argument constructor it will be having 3 inner class
+ 
+ so in Test class 1st directly create the object of STUB class
+ 
+ 
+ Then create the Object of Inner Class
+ 
+ 3 Inner class are 
+ Add
+ AddResponse
+ ExtensionMapper
+ 
+ add method having 2 parameter to set two required parameter need to create object of Inner class
+ 
+ 
+ how many methods we have in Service method that many inner Class will be created in OUr STub CLass
+
+
+create the object of Inner class using inner class set parameter the call Response of inner class ans set the values
+
+Ru the Test CLass
